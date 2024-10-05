@@ -1,0 +1,55 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar__logo img {
+    height: 40px;
+    cursor: pointer;
+  }
+  
+  .navbar__center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .navbar__search {
+    display: flex;
+    align-items: center;
+    border: 1px solid lightgray;
+    padding: 10px;
+    border-radius: 999px;
+  }
+  
+  .navbar__search input {
+    border: none;
+    outline: none;
+    width: 100%;
+  }
+  
+  .navbar__searchIcon {
+    color: gray;
+  }
+  
+  .navbar__right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .navbar__right p {
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    transition: color 0.2s ease-in-out;
+  }
+  
+  .navbar__right p:hover {
+    color: #ff385c; /* Airbnb's pink */
+  }
+  
