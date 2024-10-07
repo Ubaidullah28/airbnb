@@ -7,10 +7,19 @@ import 'react-datepicker/dist/react-datepicker.css';
 function Search() {
   // State to track if the dropdown is visible
   const [showDropdown, setShowDropdown] = useState(false);
+  const [showGuestsDropdown, setShowGuestsDropdown] = useState(false);
 
   // States for handling check-in and check-out dates
   const [checkInDate, setCheckInDate] = useState(null);
   const [checkOutDate, setCheckOutDate] = useState(null);
+
+  // State for guest counts
+  const [guestCounts, setGuestCounts] = useState({
+    adults: 0,
+    children: 0,
+    infants: 0,
+    pets: 0
+  });
 
   const suggestedCities = [
     "Lahore, Pakistan",
@@ -30,6 +39,19 @@ function Search() {
   // Function to handle the dropdown toggle for the "Where" input
   const handleDropdownToggle = () => {
     setShowDropdown(!showDropdown);
+  };
+
+  // Function to handle the dropdown toggle for guests
+  const handleGuestsDropdownToggle = () => {
+    setShowGuestsDropdown(!showGuestsDropdown);
+  };
+
+  // Function to update guest counts
+  const updateGuestCount = (type, increment) => {
+    setGuestCounts((prevCounts) => ({
+      ...prevCounts,
+      [type]: Math.max(prevCounts[type] + increment, 0) // Prevent negative values
+    }));
   };
 
   return (
@@ -85,10 +107,45 @@ function Search() {
         />
       </div>
 
-      {/* Guests input */}
+      {/* Guests input with dropdown */}
       <div className="search-bar__input guests">
         <label>Who</label>
-        <input type="text" placeholder="Add guests" />
+        <input
+          type="text"
+          placeholder="Add guests"
+          onClick={handleGuestsDropdownToggle}
+          readOnly
+        />
+        {/* Dropdown for guest counts */}
+        {showGuestsDropdown && (
+          <div className="dropdown">
+            <p className="dropdown__title">Guests</p>
+            <div className="guest-category">
+              <p>Adults(Age {'>'}=13)      </p>
+              <button onClick={() => updateGuestCount('adults', -1)}>-</button>
+              <span>{guestCounts.adults}</span>
+              <button onClick={() => updateGuestCount('adults', 1)}>+</button>
+            </div>
+            <div className="guest-category">
+              <p>Children(Age 2–12)</p>
+              <button onClick={() => updateGuestCount('children', -1)}>-</button>
+              <span>{guestCounts.children}</span>
+              <button onClick={() => updateGuestCount('children', 1)}>+</button>
+            </div>
+            <div className="guest-category">
+              <p>Infants(Under 2)    </p>
+              <button onClick={() => updateGuestCount('infants', -1)}>-</button>
+              <span>{guestCounts.infants}</span>
+              <button onClick={() => updateGuestCount('infants', 1)}>+</button>
+            </div>
+            <div className="guest-category">
+              <p>Pets   </p>
+              <button onClick={() => updateGuestCount('pets', -1)}>-</button>
+              <span>{guestCounts.pets}</span>
+              <button onClick={() => updateGuestCount('pets', 1)}>+</button>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Search icon button */}

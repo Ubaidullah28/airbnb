@@ -117,3 +117,35 @@
 .react-datepicker {
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
+
+
+.guest-category {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.dropdown {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  width: 120%;
+  z-index: 10;
+}
+
+.dropdown__title {
+  font-weight: bold;
+  padding: 8px;
+}
+
+.dropdown__item {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.dropdown__item:hover {
+  background-color: #f0f0f0;
+}
