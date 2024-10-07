@@ -1,121 +1,54 @@
-
-
-
-
-
-
-
-
-import React, { useState } from 'react'; // Import useState
+import React, { useState } from 'react';
 import './navbar.css';
-import { FaSearch } from 'react-icons/fa';
+import { FaGlobe, FaBars, FaUserCircle } from 'react-icons/fa'; // Importing icons
 
-function Navbar() {
-  const [activeOption, setActiveOption] = useState("Stays"); // Default to "Stays"
-  
-  // Add missing useState for modal visibility
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showSignupModal, setShowSignupModal] = useState(false);
+const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const closeModal = () => {
-    setShowLoginModal(false);
-    setShowSignupModal(false);
-  };
-
-  // Function to set the active option when clicked
-  const handleOptionClick = (option) => {
-    setActiveOption(option);
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
   };
 
   return (
-    <div className="navbar">
-      {/* Logo */}
+    <header className="navbar">
       <div className="navbar__logo">
-        <img 
-          src="https://1000logos.net/wp-content/uploads/2017/08/Airbnb-logo.jpg" 
-          alt="Airbnb Logo" 
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_Bélo.svg"
+          alt="Airbnb"
         />
       </div>
 
-      {/* Center Links */}
-      <div className="navbar__center">
-        <p 
-          onClick={() => handleOptionClick("Home")} 
-          className={activeOption === "Home" ? "active" : ""}
-        >
-          Home
-        </p>
-        <p 
-          onClick={() => handleOptionClick("Experiences")} 
-          className={activeOption === "Experiences" ? "active" : ""}
-        >
-          Experiences
-        </p>
-        <p 
-          onClick={() => handleOptionClick("Online Experiences")} 
-          className={activeOption === "Online Experiences" ? "active" : ""}
-        >
-          Online Experiences
-        </p>
-        <p 
-          onClick={() => handleOptionClick("Stays")} 
-          className={activeOption === "Stays" ? "active" : ""}
-        >
-          Stays
-        </p>
+      <div className="navbar__links">
+        <span>Stays</span>
+        <span>Experiences</span>
+        <span>Airbnb your home</span>
       </div>
 
-      {/* Search Bar */}
-      <div className="navbar__search">
-        <input type="text" placeholder="Search" />
-        <FaSearch className="navbar__searchIcon" />
+      <div className="navbar__actions">
+        <span className="navbar__host">Airbnb your home</span>
+        <FaGlobe className="navbar__icon" />
+
+        <div className="navbar__menu" onClick={toggleMenu}>
+          <FaBars className="navbar__icon" />
+          <FaUserCircle className="navbar__icon user" />
+        </div>
       </div>
 
-      {/* Right Links (User Menu) */}
-      <div className="navbar__right">
-        <p>Become a host</p>
-        <p>Help</p>
-        <p onClick={() => setShowSignupModal(true)}>Sign up</p> {/* Show Sign-up form */}
-        <p onClick={() => setShowLoginModal(true)}>Log in</p>  {/* Show Log-in form */}
-      </div>
-
-      {/* Login Modal */}
-      {showLoginModal && (
-        <div className="modal">
-          <div className="modal__content">
-            <h2>Login</h2>
-            <form>
-              <label>Email:</label>
-              <input type="email" required />
-              <label>Password:</label>
-              <input type="password" required />
-              <button type="submit">Login</button>
-              <button type="button" onClick={closeModal}>Close</button>
-            </form>
-          </div>
+      {menuOpen && (
+        <div className="navbar__dropdown">
+          <ul>
+            <li>Sign up</li>
+            <li>Log in</li>
+            <li>Gift cards</li>
+            <li>Airbnb your home</li>
+            <li>Host an experience</li>
+            <li>Help Center</li>
+          </ul>
         </div>
       )}
-
-      {/* Signup Modal */}
-      {showSignupModal && (
-        <div className="modal">
-          <div className="modal__content">
-            <h2>Sign Up</h2>
-            <form>
-              <label>Username:</label>
-              <input type="text" required />
-              <label>Email:</label>
-              <input type="email" required />
-              <label>Password:</label>
-              <input type="password" required />
-              <button type="submit">Sign Up</button>
-              <button type="button" onClick={closeModal}>Close</button>
-            </form>
-          </div>
-        </div>
-      )}
-    </div>
+    </header>
   );
-}
+};
 
 export default Navbar;
+

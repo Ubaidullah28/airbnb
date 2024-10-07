@@ -1,136 +1,107 @@
+/* General Navbar styles */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  background-color: white;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-.navbar__logo img {
-  height: 40px;
-  cursor: pointer;
-}
-
-.navbar__center {
-  display: flex;
-  gap: 30px;
-}
-
-.navbar__center p {
-  cursor: pointer;
-  font-size: 16px;
-  color: #333;
-  transition: color 0.2s ease-in-out;
-}
-
-.navbar__center p:hover {
-  color: #ff385c; /* Airbnb's pink */
-}
-
-.navbar__search {
-  display: flex;
-  align-items: center;
-  border: 1px solid lightgray;
-  padding: 10px;
-  border-radius: 999px;
-}
-
-.navbar__search input {
-  border: none;
-  outline: none;
-  width: 100%;
-}
-
-.navbar__searchIcon {
-  color: gray;
-}
-
-.navbar__right {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.navbar__right p {
-  cursor: pointer;
-  font-size: 14px;
-  color: #333;
-  transition: color 0.2s ease-in-out;
-}
-
-.navbar__right p:hover {
-  color: #ff385c; /* Airbnb's pink */
-}
-
-
-/* Modal styles */
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    z-index: 1000; /* Above other elements */
-  }
-  
-  .modal__content {
-    background-color: white;
-    padding: 30px;
-    border-radius: 8px;
-    width: 400px;
-    max-width: 90%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: left;
-  }
-  
-  .modal__content h2 {
-    margin-bottom: 20px;
-  }
-  
-  .modal__content label {
-    display: block;
-    margin-bottom: 10px;
-  }
-  
-  .modal__content input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid lightgray;
-    border-radius: 4px;
-  }
-  
-  .modal__content button {
-    margin-right: 10px;
     padding: 10px 20px;
-    background-color: #ff385c; /* Airbnb pink */
-    border: none;
-    color: white;
+    background-color: white;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .navbar__logo img {
+    height: 40px;
+  }
+  
+  .navbar__links {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .navbar__links span {
+    font-size: 16px;
+    color: #484848;
     cursor: pointer;
-    border-radius: 4px;
   }
   
-  .modal__content button:hover {
-    background-color: #ff5a7d;
+  .navbar__actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
   }
   
-
-
-  .navbar__center p {
-    margin: 0 15px;
+  .navbar__host {
+    font-size: 16px;
+    color: #484848;
     cursor: pointer;
-    font-weight: normal;
-    color: black;
   }
   
-  .navbar__center p.active {
-    font-weight: bold;
-    color: #ff385c; /* Airbnb's primary color for active state */
-    /* text-decoration: underline; */
+  .navbar__icon {
+    font-size: 20px;
+    color: #484848;
+    cursor: pointer;
+  }
+  
+  .navbar__menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  /* Dropdown menu */
+  .navbar__dropdown {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 10px;
+    z-index: 1;
+  }
+  
+  .navbar__dropdown ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .navbar__dropdown ul li {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .navbar__dropdown ul li:hover {
+    background-color: #f9f9f9;
+  }
+  
+  /* Media Queries for responsiveness */
+  @media screen and (max-width: 768px) {
+    .navbar__links {
+      display: none;
+    }
+  
+    .navbar__menu {
+      gap: 5px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .navbar {
+      padding: 10px;
+    }
+  
+    .navbar__actions {
+      gap: 10px;
+    }
+  
+    .navbar__icon.user {
+      font-size: 18px;
+    }
+  
+    .navbar__host {
+      display: none;
+    }
   }
   

@@ -58,7 +58,7 @@ function Search() {
     <div className="search-bar">
       {/* Where input with dropdown for cities */}
       <div className="search-bar__input where">
-        <label>Where</label>
+        <label><b>Where</b></label>
         <input
           type="text"
           placeholder="Search destinations"
@@ -81,7 +81,7 @@ function Search() {
 
       {/* Date picker for check-in */}
       <div className="search-bar__input check-in">
-        <label>Check in</label>
+        <label><b>Check in</b></label>
         <DatePicker
           selected={checkInDate}
           onChange={(date) => setCheckInDate(date)}
@@ -95,7 +95,7 @@ function Search() {
 
       {/* Date picker for check-out */}
       <div className="search-bar__input check-out">
-        <label>Check out</label>
+        <label><b>Check out</b></label>
         <DatePicker
           selected={checkOutDate}
           onChange={(date) => setCheckOutDate(date)}
@@ -107,16 +107,16 @@ function Search() {
         />
       </div>
 
-      {/* Guests input with dropdown */}
+      {}
       <div className="search-bar__input guests">
-        <label>Who</label>
+        <label><b>Who</b></label>
         <input
           type="text"
           placeholder="Add guests"
           onClick={handleGuestsDropdownToggle}
           readOnly
         />
-        {/* Dropdown for guest counts */}
+        {}
         {showGuestsDropdown && (
           <div className="dropdown">
             <p className="dropdown__title">Guests</p>
