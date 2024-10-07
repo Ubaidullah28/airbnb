@@ -21,7 +21,7 @@ const Navbar = () => {
       <div className="navbar__links">
         <span>Stays</span>
         <span>Experiences</span>
-        <span>Airbnb your home</span>
+       
       </div>
 
       <div className="navbar__actions">

@@ -71,4 +71,5 @@
 
 .scroll-right {
   right: 0; /* Position the right arrow at the end */
+  z-index: 0;
 }

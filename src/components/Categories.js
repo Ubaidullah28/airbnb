@@ -5,7 +5,7 @@ const Categories = () => {
   const categoriesRef = useRef(null);
 
   const categories = [
-    { name: 'Castles', icon: '🏰', disabled: true },
+    { name: 'Castles', icon: '🏰' },
     { name: 'Surfing', icon: '🏄' },
     { name: 'Rooms', icon: '🛏️' },
     { name: 'Top cities', icon: '🏙️' },
@@ -16,7 +16,7 @@ const Categories = () => {
     { name: "Chef's kitchens", icon: '👨‍🍳' },
     { name: 'Bed & breakfasts', icon: '☕' },
     { name: 'Beachfront', icon: '🏖️' },
-    { name: 'Beach', icon: '🏖️', disabled: true },
+    { name: 'Beach', icon: '🏖️' },
     { name: 'Trending', icon: '🔥' },
     { name: 'Cabins', icon: '🏡' },
     { name: 'Lakes', icon: '🏞️' },

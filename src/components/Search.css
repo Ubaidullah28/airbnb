@@ -95,7 +95,7 @@
   background-color: #f5f5f5;
 }
 
-/* Adjust positioning for the search bar to allow absolute positioning for the dropdown */
+
 .search-bar__input {
   position: relative;
 }
@@ -148,4 +148,56 @@
 
 .dropdown__item:hover {
   background-color: #f0f0f0;
+}
+
+
+
+
+@media (max-width: 768px) {
+  .search-bar {
+    flex-direction: column; /* Stack inputs vertically */
+    height: auto; /* Allow height to adjust */
+  }
+
+  .search-bar__input {
+    width: 100%; /* Full width for input fields */
+    margin-bottom: 10px; /* Add some spacing between inputs */
+  }
+
+  .search-bar__icon {
+    width: 100%; /* Full width for search icon */
+    height: 40px; /* Set a consistent height */
+    border-radius: 20px; /* Rounded corners */
+    margin-top: 10px; /* Space between input and button */
+  }
+
+  .search-bar__icon svg {
+    font-size: 20px; /* Increase icon size */
+  }
+}
+
+@media (max-width: 480px) {
+  .search-bar {
+    padding: 8px; /* Reduce padding */
+  }
+
+  .search-bar__input label {
+    font-size: 11px; /* Adjust label size */
+  }
+
+  .search-bar__input input {
+    font-size: 12px; /* Adjust input size */
+  }
+
+  .guest-category p {
+    font-size: 12px; /* Adjust guest category font size */
+  }
+
+  .guest-category button {
+    font-size: 14px; /* Adjust button size */
+  }
+
+  .dropdown__title {
+    font-size: 12px; /* Adjust dropdown title size */
+  }
 }
