@@ -119,3 +119,18 @@
     background-color: #ff5a7d;
   }
   
+
+
+  .navbar__center p {
+    margin: 0 15px;
+    cursor: pointer;
+    font-weight: normal;
+    color: black;
+  }
+  
+  .navbar__center p.active {
+    font-weight: bold;
+    color: #ff385c; /* Airbnb's primary color for active state */
+    /* text-decoration: underline; */
+  }
+  

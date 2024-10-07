@@ -1,10 +1,20 @@
-import React from 'react';
-import { useState } from 'react';
+
+
+
+
+
+
+
+
+import React, { useState } from 'react'; // Import useState
 import './navbar.css';
 import { FaSearch } from 'react-icons/fa';
 
 function Navbar() {
-    const [showLoginModal, setShowLoginModal] = useState(false);
+  const [activeOption, setActiveOption] = useState("Stays"); // Default to "Stays"
+  
+  // Add missing useState for modal visibility
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
 
   const closeModal = () => {
@@ -12,6 +22,10 @@ function Navbar() {
     setShowSignupModal(false);
   };
 
+  // Function to set the active option when clicked
+  const handleOptionClick = (option) => {
+    setActiveOption(option);
+  };
 
   return (
     <div className="navbar">
@@ -25,9 +39,30 @@ function Navbar() {
 
       {/* Center Links */}
       <div className="navbar__center">
-        <p>Home</p>
-        <p>Experiences</p>
-        <p>Online Experiences</p>
+        <p 
+          onClick={() => handleOptionClick("Home")} 
+          className={activeOption === "Home" ? "active" : ""}
+        >
+          Home
+        </p>
+        <p 
+          onClick={() => handleOptionClick("Experiences")} 
+          className={activeOption === "Experiences" ? "active" : ""}
+        >
+          Experiences
+        </p>
+        <p 
+          onClick={() => handleOptionClick("Online Experiences")} 
+          className={activeOption === "Online Experiences" ? "active" : ""}
+        >
+          Online Experiences
+        </p>
+        <p 
+          onClick={() => handleOptionClick("Stays")} 
+          className={activeOption === "Stays" ? "active" : ""}
+        >
+          Stays
+        </p>
       </div>
 
       {/* Search Bar */}
@@ -79,10 +114,7 @@ function Navbar() {
           </div>
         </div>
       )}
-
     </div>
-
-
   );
 }
 

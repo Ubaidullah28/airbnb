@@ -1,5 +1,6 @@
 import React from 'react';
-import Navbar from './components/Navbar';  // Make sure the path is correct
+import Navbar from './components/Navbar';  // Ensure the path is correct
+import Search from './components/Search';  // Import the Search component
 import './App.css';
 
 function App() {
@@ -9,8 +10,8 @@ function App() {
       <Navbar />
       
       <div className="app__content">
-        <h1>Welcome to Airbnb</h1>
-        <p>Explore your next stay!</p>
+        {/* Render the Search component below the Navbar */}
+        <Search />
       </div>
     </div>
   );
