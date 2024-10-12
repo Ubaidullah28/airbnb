@@ -77,6 +77,32 @@ const listingsData = [
       category: 'Beachfront',
       rating: 4.9,
     },
+    {
+      id:76,
+      image: 'https://picsum.photos/600/400?random=7',
+      title: 'Woods House',
+      type: 'Entire home',
+      guests: 5,
+      bedrooms: 3,
+      bathrooms: 3,
+      price: 420,
+      status: 'Booked',
+      category: 'Beachfront',
+      rating: 4.7,
+    },
+    {
+      id: 8,
+      image: 'https://picsum.photos/600/400?random=8',
+      title: 'Beach Apartment',
+      type: 'Entire Apartment',
+      guests: 6,
+      bedrooms: 4,
+      bathrooms: 4,
+      price: 530,
+      status: 'Booked',
+      category: 'Beachfront',
+      rating: 4.9,
+    },
   ];
   
   export default listingsData;

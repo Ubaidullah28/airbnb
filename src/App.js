@@ -1,6 +1,8 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import Search from './components/Search';
+import './index.css'; // Import your Tailwind CSS
+
 import Categories from './components/Categories';
 import ListingsGrid from './components/ListingsGrid';
 import './App.css';

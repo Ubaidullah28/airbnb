@@ -15,7 +15,7 @@
   scrollbar-width: none;
   scroll-behavior: smooth;
   flex-wrap: nowrap;
-  width: calc(100% - 60px); /* Adjust width considering arrow buttons */
+  /*width: 350px;*/
 }
 
 .categories-list::-webkit-scrollbar {
