@@ -3,10 +3,16 @@ import './navbar.css';
 import { FaGlobe, FaBars, FaUserCircle } from 'react-icons/fa'; // Importing icons
 
 const Navbar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);  // Add this state for toggling menu
+  const [activeTab, setActiveTab] = useState('Stays');  // State for active tab
 
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
+    setMenuOpen(!menuOpen);  // Toggle the menu open/close
+  };
+
+  // Function to set the active tab
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
   };
 
   return (
@@ -19,9 +25,18 @@ const Navbar = () => {
       </div>
 
       <div className="navbar__links">
-        <span>Stays</span>
-        <span>Experiences</span>
-       
+        <span
+          className={`navbar__link ${activeTab === 'Stays' ? 'active' : ''}`}
+          onClick={() => handleTabClick('Stays')}
+        >
+          Stays
+        </span>
+        <span
+          className={`navbar__link ${activeTab === 'Experiences' ? 'active' : ''}`}
+          onClick={() => handleTabClick('Experiences')}
+        >
+          Experiences
+        </span>
       </div>
 
       <div className="navbar__actions">
@@ -34,7 +49,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {menuOpen && (
+      {menuOpen && (  // Render the dropdown menu when `menuOpen` is true
         <div className="navbar__dropdown">
           <ul>
             <li>Sign up</li>
@@ -51,4 +66,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

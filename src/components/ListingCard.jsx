@@ -11,7 +11,7 @@
           src={listing.image}
           loading="lazy"
           alt={listing.title}
-          className="m-1.5 h-[240px] w-[95%] border rounded-xl hover:shadow-xl transition duration-200"
+          className="m-1.5 h-[240px] w-[95%] border rounded-xl hover:shadow-x3 transition duration-200"
         />
         <div className="p-4">
           <h2 className="font-semibold text-lg">{listing.title}</h2>

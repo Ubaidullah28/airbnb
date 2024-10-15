@@ -6,7 +6,8 @@
     padding: 10px 20px;
     background-color: white;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
-    position: relative;
+    position:relative;
+    
   }
   
   .navbar__logo img {
@@ -103,5 +104,24 @@
     .navbar__host {
       display: none;
     }
+  }
+  
+
+  .navbar__link {
+    padding: 10px 20px;
+    cursor: pointer;
+    color: #555;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+  
+  .navbar__link:hover {
+    color: #222;
+  }
+  
+  .navbar__link.active {
+    color: #FF5A5F; /* Airbnb red */
+    font-weight: bold;
+    border-bottom: 2px solid #FF5A5F; /* Optional: add a bottom border to indicate active tab */
   }
   
