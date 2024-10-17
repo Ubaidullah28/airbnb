@@ -58,7 +58,7 @@ function Search() {
     <div className="search-bar">
       {/* Where input with dropdown for cities */}
       <div className="search-bar__input where">
-        <label><b>Where</b></label>
+        <label style={{color: 'black'}}><b>Where</b></label>
         <input
           type="text"
           placeholder="Search destinations"
@@ -81,7 +81,7 @@ function Search() {
 
       {/* Date picker for check-in */}
       <div className="search-bar__input check-in">
-        <label><b>Check in</b></label>
+        <label style={{color: 'black'}}><b>Check in</b></label>
         <DatePicker
           selected={checkInDate}
           onChange={(date) => setCheckInDate(date)}
@@ -95,7 +95,7 @@ function Search() {
 
       {/* Date picker for check-out */}
       <div className="search-bar__input check-out">
-        <label><b>Check out</b></label>
+        <label style={{color: 'black'}}><b>Check out</b></label>
         <DatePicker
           selected={checkOutDate}
           onChange={(date) => setCheckOutDate(date)}
@@ -109,7 +109,7 @@ function Search() {
 
       {}
       <div className="search-bar__input guests">
-        <label><b>Who</b></label>
+        <label style={{color: 'black'}}><b>Who</b></label>
         <input
           type="text"
           placeholder="Add guests"
@@ -127,7 +127,7 @@ function Search() {
               <button onClick={() => updateGuestCount('adults', 1)}>+</button>
             </div>
             <div className="guest-category">
-              <p>Children(Age 2–12)</p>
+              <p>Children(Age 2–12)         </p>
               <button onClick={() => updateGuestCount('children', -1)}>-</button>
               <span>{guestCounts.children}</span>
               <button onClick={() => updateGuestCount('children', 1)}>+</button>
