@@ -46,7 +46,7 @@
     align-items: center;
     color: #000;
     border-top: 1px solid #ddd;
-    padding-top: 20px;
+    padding-top: 40px;
   }
   
   .footer__bottom-right {
@@ -63,6 +63,7 @@
   .footer__social-icons a {
     color: #717171;
     margin-left: 10px;
+
   }
   
   .footer__social-icons a:hover {
