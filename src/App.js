@@ -1,11 +1,11 @@
-// src/App.js
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Search from './components/Search';
-import './index.css'; // Import your Tailwind CSS
+import './index.css';
 import Categories from './components/Categories';
 import ListingsGrid from './components/ListingsGrid';
-import Loading from './components/Loading'; // Import the Loading component for splash screen
+import Loading from './components/Loading';
+import Footer from './components/Footer';  // Import Footer component
 import './App.css';
 
 function App() {
@@ -50,6 +50,11 @@ function App() {
           <ListingsGrid category={category} /> {/* Pass the category prop */}
         </section>
       </main>
+
+      {/* Footer Component */}
+      <footer className="footer-container">
+        <Footer />
+      </footer>
     </div>
   );
 }
