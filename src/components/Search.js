@@ -121,25 +121,25 @@ function Search() {
           <div className="dropdown">
             <p className="dropdown__title">Guests</p>
             <div className="guest-category">
-              <p>Adults(Age {'>'}=13)      </p>
+              <p>Adults (Age 13 or above)      </p>
               <button onClick={() => updateGuestCount('adults', -1)}>-</button>
               <span>{guestCounts.adults}</span>
               <button onClick={() => updateGuestCount('adults', 1)}>+</button>
             </div>
             <div className="guest-category">
-              <p>Children(Age 2–12)         </p>
+              <p>Children (Age 2 – 12)</p>
               <button onClick={() => updateGuestCount('children', -1)}>-</button>
               <span>{guestCounts.children}</span>
               <button onClick={() => updateGuestCount('children', 1)}>+</button>
             </div>
             <div className="guest-category">
-              <p>Infants(Under 2)    </p>
+              <p>Infants (Under 2)</p>
               <button onClick={() => updateGuestCount('infants', -1)}>-</button>
               <span>{guestCounts.infants}</span>
               <button onClick={() => updateGuestCount('infants', 1)}>+</button>
             </div>
             <div className="guest-category">
-              <p>Pets   </p>
+              <p>Pets</p>
               <button onClick={() => updateGuestCount('pets', -1)}>-</button>
               <span>{guestCounts.pets}</span>
               <button onClick={() => updateGuestCount('pets', 1)}>+</button>
