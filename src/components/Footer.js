@@ -48,9 +48,9 @@ function Footer() {
         <div className="footer__bottom-right">
           <p>English (US) · $ USD</p>
           <div className="footer__social-icons">
-            <a href="https://www.facebook.com/"><i className="bx bxl-facebook"></i></a>
-            <a href="https://twitter.com/"><i className="bx bxl-twitter"></i></a>
-            <a href="https://www.instagram.com/"><i className="bx bxl-instagram"></i></a>
+            <a href="https://web.facebook.com/airbnb/?_rdc=1&_rdr"><i className="bx bxl-facebook"></i></a>
+            <a href="https://twitter.com/airbnb?lang=en"><i className="bx bxl-twitter"></i></a>
+            <a href="https://www.instagram.com/airbnb/"><i className="bx bxl-instagram"></i></a>
           </div>
         </div>
       </div>
