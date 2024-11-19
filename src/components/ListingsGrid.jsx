@@ -37,33 +37,28 @@
 
 
 
+import React from 'react';
 
-import React, { useEffect, useState } from 'react';
-
-const ListingsGrid = () => {
-  const [listings, setListings] = useState([]);
-
-  useEffect(() => {
-    fetch('http://localhost:3001/api/listings')
-      .then(response => response.json())
-      .then(data => setListings(data))
-      .catch(err => console.error("Error fetching listings:", err));
-  }, []);
-
+function ListingsGrid({ listings }) {
+  console.log("Listings in Grid:", listings); // Log listings passed to ListingsGrid
   return (
-    <div className="listings-grid">
-      {listings.map(listing => (
-        <div key={listing.id} className="listing-card">
-          <img src={listing.images[0]} alt={listing.title} />
+    <div className="mt-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
+      {listings.map((listing) => (
+        <div key={listing.id} className="listing-item">
+          <img
+            src={listing.images[0]} // Assuming the first image in the array is used
+            alt={listing.title}
+            // width="100%" // Or any fixed width/height
+            // height="auto"
+          />
           <h2>{listing.title}</h2>
           <p>{listing.location}</p>
-          <p>{listing.type}</p>
-          <p>{listing.pricePerNight} USD/night</p>
-          <a href={`/listings/${listing.id}`}>View Details</a>
+          <p>${listing.pricePerNight} / night</p>
         </div>
       ))}
     </div>
   );
-};
+}
+
 
 export default ListingsGrid;

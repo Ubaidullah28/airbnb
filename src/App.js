@@ -104,17 +104,18 @@ function App() {
       try {
         const response = await fetch('http://localhost:3001/api/listings');
         const data = await response.json();
-        console.log(data);  // Log the data for debugging
-        setListings(data);
+        console.log("Fetched Listings:", data);  // Verify the data here
+        setListings(data); // Set the listings state
         setLoading(false);
       } catch (error) {
         console.error('Error fetching listings:', error);
         setLoading(false);
       }
     };
-
+  
     fetchData();
   }, []);
+  
 
   // Render the Loading screen for 3 seconds and then show the main content
   if (loading) {
