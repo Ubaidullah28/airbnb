@@ -44,3 +44,8 @@ function ListingDetails() {
 }
 
 export default ListingDetails;
+
+
+
+
+

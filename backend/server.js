@@ -1,67 +1,142 @@
+
+
+
+
+
+
+
+
+
+// const express = require('express');
+// const cors = require('cors');
+
+// const { MongoClient } = require('mongodb');
+// const authRoutes = require('./routes/auth');  // Routes for authentication
+// const profileRoutes = require('./routes/profile');  // Protected profile route
+// const app = express();
+// const port = 3001; // Ensure this matches the API port you're using in React
+
+// // Middleware to enable CORS for cross-origin requests
+// app.use(cors());
+// app.use(express.json()); // To parse JSON bodies in POST requests
+
+
+
+// // Routes
+// app.use('/api/auth', authRoutes);  // Authentication routes like login, register
+// app.use('/api/user', profileRoutes);  // Protected routes like profile (secured with JWT)
+
+
+
+// // MongoDB connection URI
+// const uri = 'mongodb://localhost:27017/airbnb'; // Update with your actual MongoDB URI
+// const dbName = 'airbnb'; // Replace with your actual database name
+// let db;
+
+
+
+
+
+// // Connect to MongoDB
+// MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, connectTimeoutMS: 30000  })
+//   .then(client => {
+//     db = client.db(dbName);
+//     console.log('Connected to the database');
+//   })
+//   .catch(err => {
+//     console.error('Failed to connect to database:', err);
+//     process.exit(1); // Exit if connection fails
+//   });
+
+
+// // const mongoose = require('mongoose');
+
+
+// // mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+// //   .then(() => console.log('Connected to MongoDB'))
+// //   .catch(err => console.error('Error connecting to MongoDB:', err));
+
+
+
+
+
+// // API route to fetch listings
+// app.get('/api/listings', async (req, res) => {
+//   try {
+//     if (!db) {
+//       console.error('Database connection not established');
+//       return res.status(500).json({ error: 'Database connection error' });
+//     }
+    
+//     // Fetch listings from the database
+//     const listings = await db.collection('listings').find({}).toArray();
+    
+//     if (listings.length > 0) {
+//       return res.json(listings);
+//     } else {
+//       return res.status(404).json({ error: 'No listings found' });
+//     }
+//   } catch (err) {
+//     console.error('Error fetching listings:', err);
+//     return res.status(500).json({ error: 'Failed to fetch listings' });
+//   }
+// });
+
+// // Start the server
+// app.listen(port, () => {
+//   console.log(`Server is running on http://localhost:${port}`);
+// });
+
+
+
+
+
+
+
+// server.js
 const express = require('express');
-const app = express();
 const cors = require('cors');
-const path = require('path');
-const fs = require('fs');
-const PORT = 3001;
+const { MongoClient } = require('mongodb');
+const authRoutes = require('./routes/auth');  // Routes for authentication
+const profileRoutes = require('./routes/profile');  // Protected profile route
+const mongoose = require('mongoose');
+const Listing = require('./models/Listing');  // Import the Listing model
+require('dotenv').config(); 
+const app = express();
+const port = 3001; // Ensure this matches the API port you're using in React
 
+// Middleware to enable CORS for cross-origin requests
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); // To parse JSON bodies in POST requests
 
-const listingsData = require('./listingData');
+// Routes
+app.use('/api/auth', authRoutes);  // Authentication routes like login, register
+app.use('/api/user', profileRoutes);  // Protected routes like profile (secured with JWT)
 
-// Get all listings
-app.get('/api/listings', (req, res) => {
-  res.json(listingsData);
-});
 
-// Get listing by ID
-app.get('/api/listings/:id', (req, res) => {
-  const listing = listingsData.find(listing => listing.id === parseInt(req.params.id));
-  if (listing) {
-    res.json(listing);
-  } else {
-    res.status(404).json({ error: 'Listing not found' });
+
+
+// MongoDB connection URI
+const uri = 'mongodb://localhost:27017/airbnb'; // Update with your actual MongoDB URI
+const dbName = 'airbnb'; // Replace with your actual database name
+
+// Connect to MongoDB
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error('Error connecting to MongoDB:', err));
+
+// Endpoint to get listings
+app.get("/api/listings", async (req, res) => {
+  try {
+    const listings = await Listing.find(); // Mongoose query to fetch listings
+    res.json(listings);  // Ensure the response is an array
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch listings" });
   }
 });
 
-// Search listings
-app.get('/api/search', (req, res) => {
-  const { type, title, category } = req.query;
-  const filteredListings = listingsData.filter(listing => {
-    return (
-      (type && listing.type.toLowerCase().includes(type.toLowerCase())) ||
-      (title && listing.title.toLowerCase().includes(title.toLowerCase())) ||
-      (category && listing.category.toLowerCase().includes(category.toLowerCase()))
-    );
-  });
-
-  res.json(filteredListings);
-});
-
-// Create booking
-app.post('/api/bookings', (req, res) => {
-  const { name, phoneNumber, title, category } = req.body;
-  const newBooking = { name, phoneNumber, title, category };
-
-  const filePath = path.join(__dirname, 'booking.json');
-  fs.readFile(filePath, 'utf8', (err, data) => {
-    let bookings = [];
-    if (!err && data) {
-      bookings = JSON.parse(data);
-    }
-    bookings.push(newBooking);
-
-    fs.writeFile(filePath, JSON.stringify(bookings, null, 2), (err) => {
-      if (err) {
-        return res.status(500).json({ message: 'Error saving booking data' });
-      }
-      res.status(201).json({ message: 'Booking saved successfully' });
-    });
-  });
-});
-
 // Start the server
-app.listen(PORT, () => {
-  console.log(`Server is on http://localhost:${PORT}`);
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
 });
