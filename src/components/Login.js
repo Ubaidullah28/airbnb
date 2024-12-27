@@ -5,7 +5,52 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handleSubmit = async (e) => {
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     setError(''); // Clear error messages
+    
+//     if (!email || !password) {
+//       setError('Please fill in both fields');
+//       return;
+//     }
+  
+//     try {
+//       const response = await fetch('http://localhost:3001/api/auth/login', {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify({ email, password }),
+//       });
+  
+//       const data = await response.json();
+  
+//       if (!response.ok) {
+//         console.error('Error:', data.error);
+//         setError(data.error || 'Invalid email or password');
+//         return;
+//       }
+//       if (response.ok) {
+//         // Handle successful sign-up (e.g., redirect to login page or show success message)
+//         alert('logged in successful!');
+//         // You can redirect to the login page after successful signup (e.g., using `useHistory` or `navigate`)
+//       } else {
+//         // Handle errors (e.g., show the error message returned by the API)
+//         setError(data.error || 'Something went wrong');
+//       }
+  
+//       // Successful login
+//       console.log('Login successful:', data);
+//       localStorage.setItem('authToken', data.token); // Store token
+//       window.location.href = '/'; // Redirect to homepage
+//     } catch (error) {
+//       console.error('Error logging in:', error);
+//       setError('An error occurred while logging in. Please try again later.');
+//     }
+//   };
+
+
+const handleSubmit = async (e) => {
     e.preventDefault();
     setError(''); // Clear error messages
     
@@ -30,24 +75,30 @@ const Login = () => {
         setError(data.error || 'Invalid email or password');
         return;
       }
-      if (response.ok) {
-        // Handle successful sign-up (e.g., redirect to login page or show success message)
-        alert('logged in successful!');
-        // You can redirect to the login page after successful signup (e.g., using `useHistory` or `navigate`)
-      } else {
-        // Handle errors (e.g., show the error message returned by the API)
-        setError(data.error || 'Something went wrong');
-      }
   
       // Successful login
       console.log('Login successful:', data);
       localStorage.setItem('authToken', data.token); // Store token
+      localStorage.setItem('username', email); // Store the username (or another identifier)
+  
+      alert('Login successful!');
       window.location.href = '/'; // Redirect to homepage
     } catch (error) {
       console.error('Error logging in:', error);
       setError('An error occurred while logging in. Please try again later.');
     }
   };
+  
+
+
+
+
+
+
+
+
+
+
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
