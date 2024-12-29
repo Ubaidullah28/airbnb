@@ -85,19 +85,17 @@
 
 
 
-
-
-
   import React, { useState, useEffect } from 'react';
   import './navbar.css';
   import { FaGlobe, FaBars, FaUserCircle } from 'react-icons/fa'; // Importing icons
   import { Link } from 'react-router-dom'; // Add this import
+  import AdminLogin from './AdminLogin'; 
   
   const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);  // Add this state for toggling menu
-    const [activeTab, setActiveTab] = useState('Stays');  // State for active tab
-    const [isLoggedIn, setIsLoggedIn] = useState(false); // Check if the user is logged in
-    const [username, setUsername] = useState(''); // Store the logged-in username
+    const [activeTab, setActiveTab] = useState('Stays');
+    const [isLoggedIn, setIsLoggedIn] = useState(false); 
+    const [username, setUsername] = useState(''); 
   
     const toggleMenu = () => {
       setMenuOpen(!menuOpen);  // Toggle the menu open/close
@@ -124,12 +122,13 @@
       localStorage.removeItem('username');
       setIsLoggedIn(false);
       setUsername('');
-      window.location.href = '/login'; // Redirect to login page
+      window.location.href = '/login'; 
     };
   
     const closeMenu = () => {
       setMenuOpen(false);  // Close the menu when a link is clicked
     };
+    
   
     return (
       <header className="navbar">
@@ -156,18 +155,42 @@
         </div>
   
         <div className="navbar__actions">
-          <span className="navbar__host">Airbnb your home</span>
-          <FaGlobe className="navbar__icon" />
+          {/* Conditionally render the Airbnb link only when user is not logged in */}
+          {!isLoggedIn && (
+            <span className="navbar__host">
+              <Link to="http://localhost:3000/" className="navbar__host-link">Airbnb your home</Link>
+            </span>
+          )}
   
-          <div className="navbar__menu" onClick={toggleMenu}>
-            <FaBars className="navbar__icon" />
-            <FaUserCircle className="navbar__icon user" />
-          </div>
+          {/* Conditionally render icons based on login status */}
+          {isLoggedIn ? (
+            <>
+              <span className="navbar__username">{username}</span>  {/* Show username instead of icons */}
+              <button className="navbar__logout" onClick={handleLogout}>
+                Log Out
+              </button>
+            </>
+          ) : (
+            <>
+              <FaGlobe className="navbar__icon" />
+              <div className="navbar__menu" onClick={toggleMenu}>
+                <FaBars className="navbar__icon" />
+                <FaUserCircle className="navbar__icon user" />
+              </div>
+            </>
+          )}
         </div>
   
         {menuOpen && (  // Render the dropdown menu when `menuOpen` is true
           <div className="navbar__dropdown">
             <ul>
+            
+                <li>
+                  <Link to="/admin" onClick={closeMenu}>Admin Dashboard</Link>
+                </li>
+              
+                
+              
               <li>
                 <Link to="/signup" onClick={closeMenu}>Sign up</Link>  {/* Close menu on click */}
               </li>
@@ -180,19 +203,18 @@
               <li>Help Center</li>
             </ul>
           </div>
+          
         )}
-  
-        {isLoggedIn && (
-          <div className="navbar__user-info">
-            <span className="navbar__username">{username}</span>
-            <button className="navbar__logout" onClick={handleLogout}>
-              Log Out
-            </button>
-          </div>
-        )}
+         
       </header>
     );
   };
   
   export default Navbar;
   
+
+
+
+
+
+

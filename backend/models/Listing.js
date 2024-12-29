@@ -5,7 +5,7 @@ const listingSchema = new mongoose.Schema({
   location: { type: String, required: true },
   type: { type: String, required: true },
   category: { type: String, required: true },
-  amenities: { type: [String], required: true },
+  amenities: { type: [String], required: false },
   guests: { type: Number, required: true },
   bedrooms: { type: Number, required: true },
   bathrooms: { type: Number, required: true },

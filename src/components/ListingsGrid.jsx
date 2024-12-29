@@ -94,10 +94,14 @@ const ListingsGrid = () => {
       .catch((error) => console.error('Error fetching listings:', error));
   }, []);
 
+  
+
+ 
   return (
     <div className="mt-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
       {listings.map((listing) => (
         <div key={listing._id} className="listing-item border rounded-md overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 max-w-xs mx-auto">
+          
           {/* Image at the top */}
           <img src={listing.images[0]} alt={listing.title} className="w-full h-48 object-cover" />
           
@@ -107,7 +111,10 @@ const ListingsGrid = () => {
             <p className="text-sm text-gray-500">{listing.location}</p>
             <p className="text-sm text-gray-500">{listing.type}</p>
             <p className="text-lg font-bold text-gray-900">${listing.pricePerNight} / night</p>
-          </div>
+            
+            
+          
+  </div>
         </div>
       ))}
     </div>

@@ -92,7 +92,7 @@ module.exports = [
     },
     {
       id: 8,
-      title: "Charming Countryside Cottage",
+      title: "Charming Cottage",
       location: "Napa Valley, California",
       type: "Cottage",
       category: "Countryside",

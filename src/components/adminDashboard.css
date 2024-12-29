@@ -1,0 +1,81 @@
+.admin-dashboard {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .admin-section {
+    margin-bottom: 40px;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  
+  .listings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .listing-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .listing-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .listing-img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+  
+  .listing-details {
+    padding: 10px;
+  }
+  
+  .delete-btn {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+  
+  .delete-btn:hover {
+    background: #e63939;
+  }
+  
+  .add-listing-form input {
+    display: block;
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .add-listing-form button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+  
+  .add-listing-form button:hover {
+    background: #45a049;
+  }
+  

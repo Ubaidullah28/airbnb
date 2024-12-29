@@ -1,13 +1,3 @@
-
-
-
-
-
-
-
-
-
-
 // import React, { useState, useEffect } from 'react';
 // import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // import Navbar from './components/Navbar';
@@ -18,6 +8,9 @@
 // import Footer from './components/Footer';
 // import ListingDetails from './components/ListingDetails';
 // import BookingPage from './components/BookingPage';
+// import SignUp from './components/SignUp'; // Import SignUp component
+// import Login from './components/Login'; // Import Login component
+// import AdminDashboard from './components/AdminDashboard';
 // import './App.css';
 
 // function App() {
@@ -80,6 +73,12 @@
 
 //             {/* Booking Page */}
 //             <Route path="/booking/:id" element={<BookingPage />} />
+
+//             {/* SignUp Page */}
+//             <Route path="/SignUp" element={<SignUp />} />
+
+//             {/* Login Page */}
+//             <Route path="/Login" element={<Login />} />
 //           </Routes>
 //         </main>
 
@@ -105,6 +104,9 @@
 
 
 
+
+
+
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -117,11 +119,13 @@ import ListingDetails from './components/ListingDetails';
 import BookingPage from './components/BookingPage';
 import SignUp from './components/SignUp'; // Import SignUp component
 import Login from './components/Login'; // Import Login component
+import AdminDashboard from './components/AdminDashboard'; // Import AdminDashboard
 import './App.css';
 
 function App() {
   const [loading, setLoading] = useState(true); // State to control the loading screen
   const [listings, setListings] = useState([]); // State to hold the listings data
+  const [isAdmin, setIsAdmin] = useState(localStorage.getItem('isAdmin') === 'true'); // Check if the user is an admin
 
   useEffect(() => {
     const fetchData = async () => {
@@ -150,7 +154,7 @@ function App() {
       <div className="App">
         {/* Navbar Component */}
         <header className="navbar-container">
-          <Navbar />
+          <Navbar isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
         </header>
 
         {/* Main Content */}
@@ -181,10 +185,18 @@ function App() {
             <Route path="/booking/:id" element={<BookingPage />} />
 
             {/* SignUp Page */}
-            <Route path="/SignUp" element={<SignUp />} />
+            <Route path="/signup" element={<SignUp />} />
 
             {/* Login Page */}
-            <Route path="/Login" element={<Login />} />
+            <Route path="/login" element={<Login />} />
+
+            {/* Admin Dashboard Page (Only for Admin) */}
+            {isAdmin && (
+              <Route path="/admin" element={<AdminDashboard />} />
+            )}
+
+            {/* Redirect if no route matches */}
+            <Route path="*" element={<div>Page Not Found</div>} />
           </Routes>
         </main>
 
@@ -198,5 +210,3 @@ function App() {
 }
 
 export default App;
-
-
