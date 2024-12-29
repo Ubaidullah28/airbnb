@@ -7,6 +7,7 @@ const profileRoutes = require('./routes/profile');
 const mongoose = require('mongoose');
 const Listing = require('./models/Listing');
  const adminRoutes = require('./routes/adminRoutes');
+ const listingsRouter = require('./routes/listingRoutes');
 require('dotenv').config(); 
 const app = express();
 const port = 3001; 
@@ -19,6 +20,7 @@ app.use(express.json()); // To parse JSON bodies in POST requests
 app.use('/api/auth', authRoutes);  
 app.use('/api/user', profileRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/listings', listingsRouter);
 
 
 
@@ -41,6 +43,10 @@ app.get("/api/listings", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch listings" });
   }
 });
+
+
+
+
 
 // Start the server
 app.listen(port, () => {
