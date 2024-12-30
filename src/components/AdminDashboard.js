@@ -198,7 +198,7 @@
 
 
 
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import ListingsGrid from './ListingsGrid'; // Import ListingsGrid component
 import Categories from './Categories'; // Import Categories component
@@ -206,10 +206,11 @@ import { useNavigate } from 'react-router-dom';
 
 
 const AdminDashboard = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
-  const [username, setUsername] = useState(""); // Admin username
-  const [password, setPassword] = useState(""); // Admin password
+  //const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
+  //const [username, setUsername] = useState(""); // Admin username
+  //const [password, setPassword] = useState(""); // Admin password
   const [error, setError] = useState(""); // State for error handling
+  
   const [listingDetails, setListingDetails] = useState({
     title: "",
     location: "",
@@ -226,6 +227,7 @@ const AdminDashboard = () => {
   const [bookings, setBookings] = useState([]); // State for bookings
   const navigate = useNavigate(); // Hook to handle redirects
   const [listings, setListings] = useState([]);  // State to store listings
+  const [showBookings, setShowBookings] = useState(false);
 
  // State for login form
  const [login, setLogin] = useState({
@@ -246,7 +248,7 @@ const AdminDashboard = () => {
     if (login.username === storedUsername && login.password === storedPassword) {
       setIsAuthenticated(true);
     } else {
-      setError("Invalid credentials");
+      setError("Invalid email or password!!!");
     }
   };
 
@@ -302,6 +304,11 @@ const AdminDashboard = () => {
     }
   };
 
+  const toggleBookings = () => {
+    setShowBookings(!showBookings);
+};
+
+
   const handleDeleteListing = async (listingId) => {
     try {
       const response = await axios.delete(`http://localhost:3001/api/listings/${listingId}`);
@@ -316,6 +323,29 @@ const AdminDashboard = () => {
       alert('Failed to delete listing');
     }
   };
+
+  const renderBookings = (bookings) => {
+    return bookings.map((booking) => (
+        <div key={booking._id}>
+            <p>Customer: {booking.guests}</p>
+            <p>Date: {new Date(booking.checkInDate).toLocaleDateString()} - {new Date(booking.checkOutDate).toLocaleDateString()}</p>
+            <p>Listing: {booking.listingId}</p>
+        </div>
+    ));
+};
+
+const fetchBookings = async () => {
+    try {
+        const response = await axios.get('http://localhost:3001/api/bookings');
+        setBookings(response.data); // Save bookings in state
+    } catch (error) {
+        console.error('Error fetching bookings:', error.response?.status || error.message);
+        console.log('Detailed error:', error.response?.data || error);
+    }
+};
+useEffect(() => {
+    fetchBookings();
+}, []);
 
 
   return (
@@ -360,6 +390,26 @@ const AdminDashboard = () => {
           >
             Logout
           </button>
+
+           {/* Fetch Bookings */}
+           <div className="bookings-section">
+            <h3 className="text-lg font-medium mb-2"></h3>
+            <button onClick={toggleBookings} className="bg-gray-500 text-white py-2 px-4 rounded mb-4">
+            {showBookings ? 'Hide Bookings' : 'Show Bookings'}
+            
+            </button>
+            
+            {showBookings &&(
+             <div>   
+            {bookings.length > 0 ? renderBookings(bookings) : <p>No bookings available</p>}
+            </div>
+            //   {/* {bookings.map((booking) => (
+            //     <li key={booking._id}>
+            //       {`Customer: ${booking.customerName}, Date: ${booking.date}, Listing: ${booking.listingTitle}`}
+            //     </li>
+            //   ))} */}
+            ) }
+          </div>
 
           {/* Listings Section */}
           <div className="listings-container">
@@ -462,17 +512,7 @@ const AdminDashboard = () => {
             </button>
           </div>
 
-          {/* Bookings Section */}
-          <div className="bookings-section">
-            <h3 className="text-lg font-medium mb-2">Bookings</h3>
-            <ul className="list-disc pl-6">
-              {bookings.map((booking) => (
-                <li key={booking._id}>
-                  {booking.customerName} - {booking.date}
-                </li>
-              ))}
-            </ul>
-          </div>
+          
         </div>
       )}
     </div>

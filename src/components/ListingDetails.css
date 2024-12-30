@@ -78,3 +78,41 @@
     color: #888;
   }
   
+
+
+ 
+  
+  .form-group {
+    margin: 10px 0;
+  } */
+  
+  label {
+    display: block;
+    font-size: 1.1rem;
+  }
+   
+  input[type="date"], input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 1rem;
+    margin-top: 5px;
+  }
+  
+ 
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .booking-status {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    color: green;
+  }
+  
+  .loading {
+    text-align: center;
+    font-size: 1.5rem;
+  }
+  

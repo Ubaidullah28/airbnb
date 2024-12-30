@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const Listing = require('./models/Listing');
  const adminRoutes = require('./routes/adminRoutes');
  const listingsRouter = require('./routes/listingRoutes');
+ const bookingRoutes = require('./routes/bookingRoutes'); // Adjust the path if needed
 require('dotenv').config(); 
 const app = express();
 const port = 3001; 
@@ -21,6 +22,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/user', profileRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/listings', listingsRouter);
+app.use('/api/bookings', bookingRoutes); // Handle bookings
 
 
 
