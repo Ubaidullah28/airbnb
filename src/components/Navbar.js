@@ -89,7 +89,7 @@
   import './navbar.css';
   import { FaGlobe, FaBars, FaUserCircle } from 'react-icons/fa'; // Importing icons
   import { Link } from 'react-router-dom'; // Add this import
-  import AdminLogin from './AdminLogin'; 
+  //import AdminLogin from './AdminLogin'; 
   
   const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);  // Add this state for toggling menu
@@ -133,10 +133,12 @@
     return (
       <header className="navbar">
         <div className="navbar__logo">
+          <a href="http://localhost:3000">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_Bélo.svg"
             alt="Airbnb"
           />
+          </a>
         </div>
   
         <div className="navbar__links">
@@ -197,8 +199,12 @@
               <li>
                 <Link to="/login" onClick={closeMenu}>Log in</Link>  {/* Close menu on click */}
               </li>
-              <li>Gift cards</li>
+              <li>
+              <Link to="/gift-cards" onClick={closeMenu}>Gift cards</Link>
+              </li>
+              <a href="http://localhost:3000">
               <li>Airbnb your home</li>
+              </a>
               <li>Host an experience</li>
               <li>Help Center</li>
             </ul>

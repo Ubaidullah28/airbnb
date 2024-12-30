@@ -1,0 +1,22 @@
+/* GiftCards.css */
+.gift-cards-container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .gift-cards-container h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .gift-cards-container p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+  }
+  
+  .gift-cards-container button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
