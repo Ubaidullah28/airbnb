@@ -301,6 +301,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom'; // For redirecting users if not logged in
 import './ListingDetails.css';
 
 function ListingDetails() {
@@ -309,6 +310,8 @@ function ListingDetails() {
   const [listing, setListing] = useState(null);
   const [bookingStatus, setBookingStatus] = useState(null);
   const [isBooked, setIsBooked] = useState(false);
+  //const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login state
+  
 
   const [checkInDate, setCheckInDate] = useState('');
   const [checkOutDate, setCheckOutDate] = useState('');
@@ -316,6 +319,8 @@ function ListingDetails() {
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
+    
+
     const fetchListingDetails = async () => {
       try {
         const response = await fetch(`http://localhost:3001/api/listings/${id}`);
@@ -336,9 +341,13 @@ function ListingDetails() {
     };
 
     fetchListingDetails();
+
+  
+
   }, [id]);
 
   useEffect(() => {
+ 
     if (checkInDate && checkOutDate && listing) {
       const startDate = new Date(checkInDate);
       const endDate = new Date(checkOutDate);
@@ -364,13 +373,30 @@ function ListingDetails() {
         return;
       }
 
+
+    // if (!isLoggedIn) {
+    //   navigate('/login'); // Use navigate for redirection
+    //   return;
+    // }
+
+    // // Proceed with booking if logged in
+    // if (isBooked) {
+    //   alert('This listing is already booked.');
+    //   return;
+    // }
+
+    // if (!checkInDate || !checkOutDate) {
+    //   alert('Please select check-in and check-out dates.');
+    //   return;
+    // }
+
       const bookingDetails = {
         listingId: id,
         checkInDate,
         checkOutDate,
         guests,
       };
-
+      
       const response = await fetch('http://localhost:3001/api/bookings', {
         method: 'POST',
         headers: {
@@ -467,7 +493,9 @@ function ListingDetails() {
             />
           </div>
           <button type="submit" className="book-now-button">
-            {isBooked ? 'Already Booked' : 'Book Now'}
+            {/* {isBooked ? 'Already Booked' : 'Book Now'} */}
+            {isBooked ? 'Already Booked' : 'Book Now'} 
+            
           </button>
         </form>
       </div>
