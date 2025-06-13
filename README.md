@@ -1,3 +1,21 @@
+🏡 Airbnb Clone (MERN Stack)
+A full-stack Airbnb clone built using the MERN stack (MongoDB, Express, React, Node.js). It features a beautiful, responsive, and interactive UI that allows users to explore listings, book stays, and host properties — just like the real Airbnb!
+
+📌 Features
+🔐 User Authentication (Login/Register)
+
+🏘️ Host Listings: Add, edit, and manage properties
+
+📅 Booking System: Guests can check availability and book stays
+
+🖼️ Image Uploads with preview
+
+📍 Map Integration (optional with location fields)
+
+🌙 Clean, responsive UI with animations
+
+🧠 Built with modular React components and RESTful API
+
 #Link
 https://moonlit-heliotrope-3dac76.netlify.app/
 
